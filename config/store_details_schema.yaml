@@ -1,0 +1,6 @@
+Store: int64
+Type: object
+Address: object
+Area_Code: int64
+Location: object
+Size: int64

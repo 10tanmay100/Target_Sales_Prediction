@@ -1,0 +1,12 @@
+Store: int64
+Date: object
+Temperature: float64
+Fuel_Price: float64
+MarkDown1: float64
+MarkDown2: float64
+MarkDown3: float64
+MarkDown4: float64
+MarkDown5: float64
+CPI: float64
+Unemployment_Rate: float64
+Holiday: bool

@@ -23,3 +23,38 @@ DATA_INGESTION_INGESTED_DIR_NAME_KEY = "ingested_dir"
 PATH_READ_LATEST_INGESTION_DATA="E:\\Ivy-Professional-School\\project\\target sales prediction\\Target_Sales_Prediction\\sales_prediction\\artifact\\data_ingestion"
 ARTIFACT_DIRECTORY="E:\\Ivy-Professional-School\\project\\target sales prediction\\Target_Sales_Prediction\\sales_prediction"
 
+# Data Validation related variables
+DATA_VALIDATION_CONFIG_KEY = "data_validation_config"
+DATA_VALIDATION_BUSINESS_CSV_SCHEMA_FILE_NAME_KEY = "business_csv_schema_file_name"
+DATA_VALIDATION_SCHEMA_DIR_KEY = "schema_dir"
+DATA_VALIDATION_ARTIFACT_DIR_NAME="data_validation"
+DATA_VALIDATION_BUSINESS_CSV_REPORT_FILE_NAME_KEY = "business_csv_report_file_name"
+DATA_VALIDATION_BUSINESS_CSV_REPORT_PAGE_FILE_NAME_KEY = "business_csv_report_page_file_name"
+
+DATA_VALIDATION_SALES_HISTORY_CSV_SCHEMA_FILE_NAME_KEY = "sales_history_csv_schema_file_name"
+DATA_VALIDATION_SALES_HISTORY_CSV_REPORT_FILE_NAME_KEY = "sales_history_csv_report_file_name"
+DATA_VALIDATION_SALES_HISTORY_CSV_REPORT_PAGE_FILE_NAME_KEY = "sales_history_csv_report_page_file_name"
+
+
+DATA_VALIDATION_STORE_DETAILS_CSV_SCHEMA_FILE_NAME_KEY = "store_details_csv_schema_file_name"
+DATA_VALIDATION_STORE_DETAILS_CSV_REPORT_FILE_NAME_KEY = "store_details_csv_report_file_name"
+DATA_VALIDATION_STORE_DETAILS_CSV_REPORT_PAGE_FILE_NAME_KEY = "store_details_csv_report_page_file_name"
+
+
+DATA_VALIDATION_BUSINESS_FOLDER_NAME="Business_csv_validation"
+DATA_VALIDATION_SALES_HISTORY_FOLDER_NAME="Sales_history_csv_validation"
+DATA_VALIDATION_STORE_DETAILS_FOLDER_NAME="Store_details_csv_validation"
+
+
+DATA_INGESTION_LATEST_DIR="E:\\Ivy-Professional-School\\project\\target sales prediction\\Target_Sales_Prediction\\sales_prediction\\artifact\\data_ingestion"
+
+
+BUSINESS_CSV_SCHEMA_FILE_PATH="E:\\Ivy-Professional-School\\project\\target sales prediction\\Target_Sales_Prediction\\config\\business_csv_schema.yaml"
+
+SALES_HISTORY_SCHEMA_FILE_PATH="E:\\Ivy-Professional-School\\project\\target sales prediction\\Target_Sales_Prediction\\config\\sales_history_csv_schema.yaml"
+
+STORE_DETAILS_SCHEMA_FILE_PATH="E:\\Ivy-Professional-School\\project\\target sales prediction\\Target_Sales_Prediction\\config\\store_details_schema.yaml"
+
+
+
+

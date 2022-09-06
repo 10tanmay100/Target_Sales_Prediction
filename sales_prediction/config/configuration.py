@@ -1,4 +1,4 @@
-from sales_prediction.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig
+from sales_prediction.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig
 from sales_prediction.logger import logging
 from sales_prediction.exception import sales_project_exception
 from sales_prediction.constant import *
@@ -25,6 +25,93 @@ class Configuration:
             logging.info(f"Data Ingestion config: {data_ingestion_config}")
             return data_ingestion_config
 
+        except Exception as e:
+            raise sales_project_exception(e,sys) from e
+
+
+
+    def get_data_validation_config(self) -> DataValidationConfig:
+        try:
+            data_validation_info=self.config_info[DATA_VALIDATION_CONFIG_KEY]
+            
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            data_validation_artifact_dir=os.path.join(
+                artifact_dir,
+                DATA_VALIDATION_ARTIFACT_DIR_NAME,
+                self.timestamp
+            )
+
+
+    
+            
+            #schema for business csv file
+
+            business_csv_schema_file_path = os.path.join(ROOT_DIR,
+            data_validation_info[DATA_VALIDATION_SCHEMA_DIR_KEY],
+            DATA_VALIDATION_BUSINESS_FOLDER_NAME,
+            data_validation_info[DATA_VALIDATION_BUSINESS_CSV_SCHEMA_FILE_NAME_KEY]
+            )
+
+            # business_csv_report_file_path = os.path.join(data_validation_artifact_dir,
+            # DATA_VALIDATION_BUSINESS_FOLDER_NAME,
+            # data_validation_info[DATA_VALIDATION_BUSINESS_CSV_REPORT_FILE_NAME_KEY]
+            # )
+
+            # business_csv_report_page_file_path = os.path.join(data_validation_artifact_dir,
+            # DATA_VALIDATION_BUSINESS_FOLDER_NAME,
+            # data_validation_info[DATA_VALIDATION_BUSINESS_CSV_REPORT_PAGE_FILE_NAME_KEY]
+
+            # )
+
+            #schema for sales history csv
+
+            sales_history_csv_schema_file_path = os.path.join(ROOT_DIR,
+            data_validation_info[DATA_VALIDATION_SCHEMA_DIR_KEY],
+            DATA_VALIDATION_SALES_HISTORY_FOLDER_NAME,
+            data_validation_info[DATA_VALIDATION_SALES_HISTORY_CSV_SCHEMA_FILE_NAME_KEY]
+            )
+
+            # sales_history_csv_report_file_path = os.path.join(data_validation_artifact_dir,
+            # DATA_VALIDATION_SALES_HISTORY_FOLDER_NAME,
+            # data_validation_info[DATA_VALIDATION_SALES_HISTORY_CSV_REPORT_FILE_NAME_KEY]
+            # )
+
+            # sales_history_csv_page_file_path = os.path.join(data_validation_artifact_dir,
+            # DATA_VALIDATION_SALES_HISTORY_FOLDER_NAME,
+            # data_validation_info[DATA_VALIDATION_SALES_HISTORY_CSV_REPORT_PAGE_FILE_NAME_KEY]
+
+            # )
+
+
+            #schema for store details csv
+
+            store_details_csv_schema_file_path = os.path.join(ROOT_DIR,
+            data_validation_info[DATA_VALIDATION_SCHEMA_DIR_KEY],
+            DATA_VALIDATION_STORE_DETAILS_FOLDER_NAME,
+            data_validation_info[DATA_VALIDATION_STORE_DETAILS_CSV_SCHEMA_FILE_NAME_KEY]
+            )
+
+            # store_details_csv_report_file_path = os.path.join(data_validation_artifact_dir,
+            # DATA_VALIDATION_STORE_DETAILS_FOLDER_NAME,
+            # data_validation_info[DATA_VALIDATION_STORE_DETAILS_CSV_REPORT_FILE_NAME_KEY]
+            # )
+
+            # store_details_csv_page_file_path = os.path.join(data_validation_artifact_dir,
+            # DATA_VALIDATION_STORE_DETAILS_FOLDER_NAME,
+            # data_validation_info[DATA_VALIDATION_STORE_DETAILS_CSV_REPORT_PAGE_FILE_NAME_KEY]
+
+            # )
+
+
+
+            data_validation_config = DataValidationConfig(
+                artifact_path=data_validation_artifact_dir,
+                business_csv_schema_file_path=business_csv_schema_file_path,
+                sales_history_csv_schema_file_path=sales_history_csv_schema_file_path,
+                store_details_csv_schema_file_path=store_details_csv_schema_file_path
+
+            )
+            return data_validation_config
         except Exception as e:
             raise sales_project_exception(e,sys) from e
 

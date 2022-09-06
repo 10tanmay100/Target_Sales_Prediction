@@ -13,7 +13,7 @@ import logging
 from datetime import datetime
 import os
 
-LOG_DIR="forest_logs"
+LOG_DIR="sales_project_logs"
 
 CURRENT_TIME_STAMP=  f"{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
 

@@ -5,3 +5,16 @@ training_pipeline_config:
 data_ingestion_config:
   raw_data_dir: raw_data
   ingested_dir: ingested_data
+
+
+data_validation_config:
+  schema_dir: config
+  business_csv_schema_file_name: business_csv_schema.yaml
+  business_csv_report_file_name: business_csv_report.json
+  business_csv_report_page_file_name: business_csv_report.html
+  sales_history_csv_schema_file_name: sales_history_csv_schema.yaml
+  sales_history_csv_report_file_name: sales_history_csv_report.json
+  sales_history_csv_report_page_file_name: sales_history_csv_report.html
+  store_details_csv_schema_file_name: store_details_schema.yaml
+  store_details_csv_report_file_name: store_details_csv_report.json
+  store_details_csv_report_page_file_name: store_details_csv_report.html

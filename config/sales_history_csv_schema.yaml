@@ -1,0 +1,5 @@
+Store: int64
+Department: int64
+Date: object
+Total_Sales: float64
+Holiday: bool
