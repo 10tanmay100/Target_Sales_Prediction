@@ -1,0 +1,7 @@
+training_pipeline_config:
+  pipeline_name: sales_prediction
+  artifact_dir: artifact
+
+data_ingestion_config:
+  raw_data_dir: raw_data
+  ingested_dir: ingested_data

@@ -12,4 +12,4 @@ ipykernel
 cassandra-driver
 evidently
 imblearn
-# -e .
+-e .
