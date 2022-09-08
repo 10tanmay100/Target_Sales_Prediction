@@ -142,16 +142,16 @@ class DataTransformation:
 
             df_train,df_valid=train_test_split(final_data,test_size=0.2,random_state=0)
 
-            X=df_train.drop("Total_Sales",axis=1)
-            y=df_train["Total_Sales"]
+            X=final_data.drop("Total_Sales",axis=1)
+            y=final_data["Total_Sales"]
 
 
             file=pd.DataFrame(preprocessor.fit_transform(X),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
-            answer=pd.concat([file,y],axis=1)
-            df_train,df_valid=train_test_split(answer,test_size=0.2,random_state=0)
-            df_train.to_csv(os.path.join(self.data_transformation_config.transformed_train_dir,"train.csv"),index=False)
+            # answer=pd.concat([file,y],axis=1)
+            # df_train,df_valid=train_test_split(answer,test_size=0.2,random_state=0)
+            file.to_csv(os.path.join(self.data_transformation_config.transformed_train_dir,"train.csv"),index=False)
 
-            df_valid.to_csv(os.path.join(self.data_transformation_config.transformed_validate_dir,"validated.csv"),index=False)
+            file.to_csv(os.path.join(self.data_transformation_config.transformed_validate_dir,"validated.csv"),index=False)
 
 
             test_data=pd.DataFrame(preprocessor.transform(test_data),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
