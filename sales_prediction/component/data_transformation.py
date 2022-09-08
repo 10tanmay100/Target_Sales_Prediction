@@ -139,41 +139,40 @@ class DataTransformation:
 
             preprocessor=ColumnTransformer([("categorical",categorical_processor,["Type"]),("numerical",numeric_processor,["Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])])
 
-            #splitting the data in train and validation set
-            df_train,df_valid=train_test_split(final_data,test_size=0.2,random_state=0)
-            logging.info("Splitting the data in train and validate dataset")
-
             #divide X and y the train data
-            X=df_train.drop("Total_Sales",axis=1)
-            y=df_train["Total_Sales"]
+            X=final_data.drop("Total_Sales",axis=1)
+            y=final_data["Total_Sales"]
+
+            X_train,X_valid,y_train,y_valid=train_test_split(X,y,test_size=0.2,random_state=0)
 
             #transform the train data
-            file=pd.DataFrame(preprocessor.fit_transform(X),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
+            file=pd.DataFrame(preprocessor.fit_transform(X_train),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
+            file=file.reset_index(drop=True)
+            file
             logging.info("Transform the train data")
             #concatenate with target sales
-            answer=pd.concat([file,y],axis=1)
+            y_train=y_train.reset_index(drop=True)
+            answer=pd.concat([file,y_train],axis=1)
             logging.info("Concatenation completed!!!!")
+
+
             #converted to csv
-            file.to_csv(os.path.join(self.data_transformation_config.transformed_train_dir,"train.csv"),index=False)
+            answer.to_csv(os.path.join(self.data_transformation_config.transformed_train_dir,"train.csv"),index=False)
             logging.info(f"Train succesfully stored in {self.data_transformation_config.transformed_train_dir} directory")
 
-            #divide the data for validation
-            X1=final_data.drop("Total_Sales",axis=1)
-            y1=final_data["Total_Sales"]
-            logging.info("Validation data divided in X and y")
-
-            # validation data transformed succesfully
-            file1=pd.DataFrame(preprocessor.transform(X1),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
-            logging.info("Data Validated successfully!!!")
-
-            #concatenation with target column with validate csv
-            answer1=pd.concat([file1,y1],axis=1)
-            logging.info("Concatenation done on valid data")
+            #transform the validated data
+            file1=pd.DataFrame(preprocessor.fit_transform(X_valid),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
+            file1=file1.reset_index(drop=True)
+            logging.info("Transform the validated data")
+            #concatenate with target sales
+            y_valid=y_valid.reset_index(drop=True)
+            answer1=pd.concat([file1,y_valid],axis=1)
+            logging.info("Concatenation completed!!!!")
 
 
-            #convert the dataframe into csv file
+            #converted to csv
             answer1.to_csv(os.path.join(self.data_transformation_config.transformed_validate_dir,"validated.csv"),index=False)
-            logging.info(f"validate data stored in {self.data_transformation_config.transformed_validate_dir}")
+            logging.info(f"Train succesfully stored in {self.data_transformation_config.transformed_train_dir} directory")
 
 
             test_data=pd.DataFrame(preprocessor.transform(test_data),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
