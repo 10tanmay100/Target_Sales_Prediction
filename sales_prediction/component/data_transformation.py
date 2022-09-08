@@ -149,13 +149,13 @@ class DataTransformation:
             file=pd.DataFrame(preprocessor.fit_transform(X),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
             answer=pd.concat([file,y],axis=1)
             df_train,df_valid=train_test_split(answer,test_size=0.2,random_state=0)
-            df_train.to_csv(os.path.join(self.data_transformation_config.transformed_train_dir,"train.csv"))
+            df_train.to_csv(os.path.join(self.data_transformation_config.transformed_train_dir,"train.csv"),index=False)
 
-            df_valid.to_csv(os.path.join(self.data_transformation_config.transformed_validate_dir,"validated.csv"))
+            df_valid.to_csv(os.path.join(self.data_transformation_config.transformed_validate_dir,"validated.csv"),index=False)
 
 
             test_data=pd.DataFrame(preprocessor.transform(test_data),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
-            test_data.to_csv(os.path.join(self.data_transformation_config.transformed_test_dir,"test.csv"))
+            test_data.to_csv(os.path.join(self.data_transformation_config.transformed_test_dir,"test.csv"),index=False)
 
             path_pkl=self.data_transformation_config.preprocessed_object_file_path
             with open(path_pkl,"wb") as f:
