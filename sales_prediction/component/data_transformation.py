@@ -147,11 +147,11 @@ class DataTransformation:
 
 
             file=pd.DataFrame(preprocessor.fit_transform(X),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
-            # answer=pd.concat([file,y],axis=1)
+            answer=pd.concat([file,y],axis=1)
             # df_train,df_valid=train_test_split(answer,test_size=0.2,random_state=0)
-            file.to_csv(os.path.join(self.data_transformation_config.transformed_train_dir,"train.csv"),index=False)
+            answer.to_csv(os.path.join(self.data_transformation_config.transformed_train_dir,"train.csv"),index=False)
 
-            file.to_csv(os.path.join(self.data_transformation_config.transformed_validate_dir,"validated.csv"),index=False)
+            answer.to_csv(os.path.join(self.data_transformation_config.transformed_validate_dir,"validated.csv"),index=False)
 
 
             test_data=pd.DataFrame(preprocessor.transform(test_data),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
