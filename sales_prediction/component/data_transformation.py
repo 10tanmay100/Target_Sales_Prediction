@@ -144,8 +144,8 @@ class DataTransformation:
             logging.info("Splitting the data in train and validate dataset")
 
             #divide X and y the train data
-            X=df_train.drop("Total_Sales",axis=1)
-            y=df_train["Total_Sales"]
+            X=final_data.drop("Total_Sales",axis=1)
+            y=final_data["Total_Sales"]
 
             #transform the train data
             file=pd.DataFrame(preprocessor.fit_transform(X),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
@@ -158,12 +158,12 @@ class DataTransformation:
             logging.info(f"Train succesfully stored in {self.data_transformation_config.transformed_train_dir} directory")
 
             #divide the data for validation
-            X1=df_valid.drop("Total_Sales",axis=1)
-            y1=df_valid["Total_Sales"]
+            X1=final_data.drop("Total_Sales",axis=1)
+            y1=final_data["Total_Sales"]
             logging.info("Validation data divided in X and y")
 
             # validation data transformed succesfully
-            file1=pd.DataFrame(preprocessor.fit_transform(X1),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
+            file1=pd.DataFrame(preprocessor.transform(X1),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
             logging.info("Data Validated successfully!!!")
 
             #concatenation with target column with validate csv
@@ -173,7 +173,7 @@ class DataTransformation:
 
             #convert the dataframe into csv file
             answer1.to_csv(os.path.join(self.data_transformation_config.transformed_validate_dir,"validated.csv"),index=False)
-            logging.info(f"validate data stored in {answer1}")
+            logging.info(f"validate data stored in {self.data_transformation_config.transformed_validate_dir}")
 
 
             test_data=pd.DataFrame(preprocessor.transform(test_data),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
