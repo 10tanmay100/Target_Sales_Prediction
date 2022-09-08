@@ -154,7 +154,7 @@ class DataTransformation:
             answer=pd.concat([file,y],axis=1)
             logging.info("Concatenation completed!!!!")
             #converted to csv
-            answer.to_csv(os.path.join(self.data_transformation_config.transformed_train_dir,"train.csv"),index=False)
+            file.to_csv(os.path.join(self.data_transformation_config.transformed_train_dir,"train.csv"),index=False)
             logging.info(f"Train succesfully stored in {self.data_transformation_config.transformed_train_dir} directory")
 
             #divide the data for validation
