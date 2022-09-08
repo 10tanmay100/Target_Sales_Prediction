@@ -144,8 +144,8 @@ class DataTransformation:
             logging.info("Splitting the data in train and validate dataset")
 
             #divide X and y the train data
-            X=final_data.drop("Total_Sales",axis=1)
-            y=final_data["Total_Sales"]
+            X=df_train.drop("Total_Sales",axis=1)
+            y=df_train["Total_Sales"]
 
             #transform the train data
             file=pd.DataFrame(preprocessor.fit_transform(X),columns=["Food","Religion","Temperature","Fuel_Price","MarkDown1","MarkDown2","MarkDown3","MarkDown4","MarkDown5","CPI","Unemployment_Rate","Holiday","Size"])
