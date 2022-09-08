@@ -18,3 +18,11 @@ data_validation_config:
   store_details_csv_schema_file_name: store_details_schema.yaml
   store_details_csv_report_file_name: store_details_csv_report.json
   store_details_csv_report_page_file_name: store_details_csv_report.html
+
+data_transformation_config:
+  transformed_dir: transformed_data
+  transformed_train_dir: train
+  transformed_validate_dir: validate
+  transformed_test_dir: test
+  preprocessing_dir: preprocessed
+  preprocessed_object_file_name: preprocessed.pkl

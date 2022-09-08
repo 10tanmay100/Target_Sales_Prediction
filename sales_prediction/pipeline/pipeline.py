@@ -4,7 +4,7 @@ from sales_prediction.entity.config_entity import DataIngestionConfig,TrainingPi
 from sales_prediction.logger import logging
 from sales_prediction.component.data_ingestion import DataIngestion
 from sales_prediction.component.data_validation import DataValidation
-# from sales_prediction.component.data_transformation import DataTransformation
+from sales_prediction.component.data_transformation import DataTransformation
 # from sales_prediction.component.model_trainer import ModelTrainer
 from sales_prediction.entity.artifact_entity import *
 from sales_prediction.exception import sales_project_exception
@@ -33,10 +33,27 @@ class Pipeline:
         except Exception as e:
             raise sales_project_exception(e, sys) from e
 
+
+    def start_data_transformation(self,
+                                  data_ingestion_artifact: DataIngestionArtifact,
+                                  data_validation_artifact: DataValidationArtifact
+                                  ) -> DataTransformationArtifact:
+        try:
+            data_transformation = DataTransformation(
+                data_transformation_config=self.config.get_data_transformation_config(),
+                data_ingestion_artifact=data_ingestion_artifact,
+                data_validation_artifact=data_validation_artifact
+            )
+            return data_transformation.initiate_data_transformation()
+        except Exception as e:
+            raise sales_project_exception(e, sys)
+
     def run_pipeline(self):
         try:
             data_ingestion_artifact=self.start_data_ingestion()
             data_validation_artifact=self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
+            data_transformation_artifact = self.start_data_transformation(data_ingestion_artifact=data_ingestion_artifact,data_validation_artifact=data_validation_artifact
+            )
             return "done"
         except Exception as e:
             raise sales_project_exception(e,sys) from e

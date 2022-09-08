@@ -15,3 +15,10 @@ def read_yaml_file(file_path:str)->dict:
             return yaml.safe_load(yaml_file)
     except Exception as e:
         raise sales_project_exception(e,sys) from e
+
+
+
+def marker(x):
+    if x==True:
+        return 1
+    return 0
