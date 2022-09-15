@@ -19,7 +19,7 @@ from sales_prediction.entity.artifact_entity import DataIngestionArtifact,\
 DataValidationArtifact,DataTransformationArtifact
 import sys,os
 from sales_prediction.constant import *
-from sklearn.preprocessing import StandardScaler,OneHotEncoder
+from sklearn.preprocessing import StandardScaler,OneHotEncoder,MinMaxScaler
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer,KNNImputer

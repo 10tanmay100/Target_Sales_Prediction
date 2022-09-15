@@ -1,4 +1,4 @@
-from sales_prediction.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformationConfig
+from sales_prediction.entity.config_entity import DataIngestionConfig,TrainingPipelineConfig,DataValidationConfig,DataTransformationConfig,ModelTrainerConfig
 from sales_prediction.logger import logging
 from sales_prediction.exception import sales_project_exception
 from sales_prediction.constant import *
@@ -175,6 +175,39 @@ class Configuration:
 
             logging.info(f"Data transformation config: {data_transformation_config}")
             return data_transformation_config
+        except Exception as e:
+            raise sales_project_exception(e,sys) from e
+
+    
+
+
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        try:
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            model_trainer_artifact_dir=os.path.join(artifact_dir,MODEL_TRAINER_ARTIFACT_DIR,self.timestamp)
+            model_trainer_config_info = self.config_info[MODEL_TRAINER_CONFIG_KEY]
+
+            trained_model_file_path_cluster_folder=os.path.join(model_trainer_artifact_dir,model_trainer_config_info[MODEL_TRAINER_TRAINED_MODEL_DIR_KEY])
+
+            main_cluster_file_path=os.path.join(model_trainer_artifact_dir,model_trainer_config_info[MODEL_TRAINER_MAIN_CLUSTER_DIR_KEY])
+
+           
+
+            trained_model_file_path_cluster0 = os.path.join(model_trainer_artifact_dir,model_trainer_config_info[MODEL_TRAINER_TRAINED_MODEL_DIR_KEY],model_trainer_config_info[MODEL_TRAINER_TRAINED_MODEL_FILE_NAME_KEY_0]
+            )
+
+            trained_model_file_path_cluster1 = os.path.join(model_trainer_artifact_dir,model_trainer_config_info[MODEL_TRAINER_TRAINED_MODEL_DIR_KEY],model_trainer_config_info[MODEL_TRAINER_TRAINED_MODEL_FILE_NAME_KEY_1]
+            )
+
+
+            trained_model_file_path_cluster2 = os.path.join(model_trainer_artifact_dir,model_trainer_config_info[MODEL_TRAINER_TRAINED_MODEL_DIR_KEY],model_trainer_config_info[MODEL_TRAINER_TRAINED_MODEL_FILE_NAME_KEY_2]
+            )
+
+
+            base_accuracy = model_trainer_config_info[MODEL_TRAINER_BASE_ACCURACY_KEY]
+            model_trainer_config = ModelTrainerConfig(trained_model_file_path_cluster_folder=trained_model_file_path_cluster_folder,main_cluster_file_path=main_cluster_file_path,trained_model_file_path_cluster0=trained_model_file_path_cluster0,trained_model_file_path_cluster1=trained_model_file_path_cluster1,trained_model_file_path_cluster2=trained_model_file_path_cluster2,base_accuracy=base_accuracy)
+            logging.info(f"Model trainer config: {model_trainer_config}")
+            return model_trainer_config
         except Exception as e:
             raise sales_project_exception(e,sys) from e
 

@@ -13,6 +13,11 @@ DataTransformationConfig=namedtuple("DataTransformationConfig",
 ["transformed_train_dir","transformed_validate_dir","transformed_test_dir","preprocessed_object_folder_path",
 "preprocessed_object_file_path"])
 
+#ModelTrainerConfig
+ModelTrainerConfig = namedtuple("ModelTrainerConfig", ["trained_model_file_path_cluster_folder","main_cluster_file_path","trained_model_file_path_cluster0","trained_model_file_path_cluster1",
+"trained_model_file_path_cluster2","base_accuracy"])
+
+
 
 #datapipelineconfig
 TrainingPipelineConfig = namedtuple("TrainingPipelineConfig", ["artifact_dir"])

@@ -6,7 +6,7 @@ def run():
     r=c.run_pipeline()
     print(r)
     # c=Configuration()
-    # print(c.get_data_transformation_config())
+    # print(c.get_model_trainer_config())
 
 
 
