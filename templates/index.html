@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Forest Cover Classification</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="type" placeholder="Food" required="required" step="any" />
+        <input type="number" name="Temperature" placeholder="Temperature" required="required" step="any" />
+		<input type="number" name="Fuel_Price" placeholder="Fuel_Price" required="required" step="any"/>
+        <input type="number" name="MarkDown1" placeholder="MarkDown1" required="required" step="any"/>
+        <input type="number" name="MarkDown2" placeholder="MarkDown2" required="required" step="any"/>
+        <input type="number" name="MarkDown3" placeholder="MarkDown3" required="required" step="any"/>
+        <input type="number" name="MarkDown4" placeholder="MarkDown4" required="required" step="any"/>
+        <input type="number" name="MarkDown5" placeholder="MarkDown5" required="required" step="any"/>
+        <input type="number" name="cpi" placeholder="cpi" required="required" step="any"/>
+        <input type="number" name="Unemployment rate" placeholder="Unemployment rate" required="required" step="any"/>
+        <input type="number" name="Holiday" placeholder="if holiday 1 or 0" required="required" step="any"/>
+        <input type="number" name="size" placeholder="size" required="required" step="any"/>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
