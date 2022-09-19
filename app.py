@@ -39,7 +39,7 @@ def predict():
     df=pd.DataFrame({"Type":[a],"Temperature":[b],"Fuel_Price":[c],"MarkDown1":[d],"MarkDown2":[e],"MarkDown3":[f],"MarkDown4":[g],"MarkDown5":[h],
     "CPI":[i],"Unemployment_Rate":[j],"Holiday":[k],"Size":[l]})
     # ans=cluster0.predict(df)
-    return render_template('index.html', prediction_text='Activity Label is {}'.format(cluster0.predict(scaler.transform(df))))
+    return render_template('index.html', prediction_text='Sales Price is {}'.format(cluster0.predict(scaler.transform(df))))
 
 if __name__=="__main__":
     app.run(debug=True)
